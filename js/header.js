@@ -52,7 +52,7 @@ header.innerHTML = `<div class="color-top">
 <nav class="main-navbar">
     <ul>
         <li>
-            <button type="button" class="btn btn-secondary" id="funciona">Gris</button>
+            <button type="button" class="btn btn-secondary" id="grisMobile">Gris</button>
         </li>
         <li>
             <a href="/users/add" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
@@ -105,9 +105,10 @@ header.innerHTML = `<div class="color-top">
         </ul>
     </nav>
     <nav class="main-navbar">
+        
         <ul>
             <li>
-                <button type="button" class="btn btn-secondary" id="funciona">Gris</button>
+                <button type="button" class="btn btn-secondary" id="grisDesktop">Gris</button>
             </li>
             <li>
                 <a href="/users/add" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
@@ -127,12 +128,13 @@ header.innerHTML = `<div class="color-top">
 
 
 
-let botonito = document.getElementById('funciona');
+let btnGrisDesktop = document.getElementById('grisDesktop');
+let btnGrisMobile = document.getElementById('grisMobile')
 let html = document.getElementById('html')
 
-function haceEsto() {
-    console.log('funciona?');
-    html.classList.toggle('dark')
+function grayScale() {
+    html.classList.toggle('grey')
 }
 
-botonito.addEventListener('click', haceEsto);
+btnGrisDesktop.addEventListener('click', grayScale);
+

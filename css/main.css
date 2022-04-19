@@ -9,7 +9,7 @@ body {
     height: 100%;
 }
 
-.dark{
+.grey{
     filter: grayscale(100%)
 }
 
