@@ -52,9 +52,6 @@ header.innerHTML = `<div class="color-top">
 <nav class="main-navbar">
     <ul>
         <li>
-            <button type="button" class="btn btn-secondary" id="grisMobile">Gris</button>
-        </li>
-        <li>
             <a href="/users/add" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
                 <i class="fas fa-user"></i>
             </a>
@@ -108,9 +105,6 @@ header.innerHTML = `<div class="color-top">
         
         <ul>
             <li>
-                <button type="button" class="btn btn-secondary" id="grisDesktop">Gris</button>
-            </li>
-            <li>
                 <a href="/users/add" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
                     <i class="fas fa-user"></i>
                 </a>
@@ -128,13 +122,18 @@ header.innerHTML = `<div class="color-top">
 
 
 
-let btnGrisDesktop = document.getElementById('grisDesktop');
-let btnGrisMobile = document.getElementById('grisMobile')
-let html = document.getElementById('html')
 
-function grayScale() {
-    html.classList.toggle('grey')
+let boton = localStorage.getItem('boton')
+let notificacion = document.getElementById('circle');
+let numero = 0;
+
+// Notificacion en la bolsa del header
+boton.addEventListener('click', addNotificacion)
+
+function addNotificacion() {
+    notificacion.classList.add('notificacion');
+    numero += 1
+    if (numero >= 1) {
+        notificacion.innerText = numero
+    }
 }
-
-btnGrisDesktop.addEventListener('click', grayScale);
-

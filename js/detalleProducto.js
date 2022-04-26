@@ -100,30 +100,13 @@ function detalleProdu(array){
 
 }
 
+let btnCart = document.getElementById('addCart')
+    btnCart.addEventListener('click', ()=>{
+        localStorage.setItem('boton', btnCart)
+    })
 
 
 
-let boton = document.getElementById('addCart');
-let bolsa = document.querySelector('.fa-shopping-bag');
-let notificacion = document.getElementById('circle');
-let numero = 0;
 
-// Notificacion en la bolsa del header
-boton.addEventListener('click', addNotificacion)
-// function addNotificacion() {
-//     console.log(numero);
-//     notificacion.classList.add('notificacion');
-//     numero += 1
-//     if (numero >= 1) {
-//         notificacion.innerText = numero
-//     }
-// }
-function addNotificacion(e) {
-	let algo;
-	algo = notificacion
-    algo.classList.add('notificacion')
-
-	console.log(algo)
-}
 
 
