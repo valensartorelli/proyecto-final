@@ -180,7 +180,7 @@ select:focus{ outline: none;}
     justify-content: flex-end;
 }
 
-.main-navbar ul a {
+.main-navbar ul li {
     text-decoration: none;
     color: #222222;
     display: inline-block;
@@ -1042,6 +1042,21 @@ transition: all 0.3s ease;
     text-align: center;
 }
 
+.list-group-item{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.precioProducto{
+    padding: 1rem 2rem 0;
+    font-weight: 700;
+}
+
+.boton-eliminar{
+    border: 0;
+    background: transparent;
+}
 
 
 

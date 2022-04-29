@@ -1,22 +1,39 @@
 // Declaraciones
 let carritoDeCompras = []
+
 const detalleProducto = document.getElementById('detalleProducto');
 const descAmpliada = document.getElementById('descAmpliada');
 const breadCrumb = document.getElementById('rutas');
+const contenedorCarrito = document.getElementById('carrito-contenedor');
+
 let producto = localStorage.getItem('producto');
 let esteProducto = JSON.parse(producto);
+let idProducto = esteProducto.id;
+
+let boton = document.getElementById('addCart');
+let numero = 0;
+
+const botonTerminar = document.getElementById('terminar')
+const finCompra = document.getElementById('fin-compra')
+
+const contadorCarrito = document.getElementById('circle');
+const precioTotal = document.getElementById('precioTotal');
+
+console.log('Todos los productos: ' + stockProductos);
+console.log('ID de este producto: ' + esteProducto.id);
 
 
+// Logica de mi e-commerce
 
-
-// Mostrar info producto
+// Mostrar los productos
 detalleProdu(stockProductos)
 
-function detalleProdu(array){
+function detalleProdu(){
     breadCrumb.innerHTML = ""
     detalleProducto.innerHTML= ""
     descAmpliada.innerHTML = ""
 
+    // Agrego la seccion del breadcrumb
     let linkRuta = document.createElement('div')
     linkRuta.classList.add('container')
     linkRuta.classList.add('link-ruta')
@@ -34,10 +51,10 @@ function detalleProdu(array){
     `
     breadCrumb.appendChild(linkRuta);
 
-    
+    // Agrego la seccion Descripcion de producto
     let div = document.createElement('div')
     div.classList.add('producto')
-  
+
     div.innerHTML += `
         <div class="pd_tit-categoria">Indumentaria para ${esteProducto.categoria}</div>
         <div class="pd_producto-img">
@@ -79,7 +96,7 @@ function detalleProdu(array){
                         </a>
                     </div>
                 </div>
-                <button type="button" id="addCart" class="pd_gl-cta pd_gl-cta--primary pd_gl-cta__content">
+                <button type="button" id="addCart" class="pd_gl-cta pd_gl-cta--primary pd_gl-cta__content" >
                     Agregar al Carrito
                 </button>
             </div>
@@ -87,8 +104,7 @@ function detalleProdu(array){
     `
     detalleProducto.appendChild(div)
 
-
-
+    // Agrego la seccion Descripcion ampliada
     let otroDiv = document.createElement('div')
     otroDiv.classList.add('desc-ampliada')
     
@@ -98,15 +114,89 @@ function detalleProdu(array){
     `
     descAmpliada.appendChild(otroDiv)
 
-}
+    //
+    let btnAgregar = document.getElementById('addCart')
 
-let btnCart = document.getElementById('addCart')
-    btnCart.addEventListener('click', ()=>{
-        localStorage.setItem('boton', btnCart)
+    btnAgregar.addEventListener('click',()=>{
+        console.log('hola gila');
+        console.log(esteProducto.id);
+        agregarAlCarrito(esteProducto.id)
     })
 
+}
 
 
+// Agregar al carrito
+function agregarAlCarrito(id) {
+    let yaEsta = carritoDeCompras.find(item=> item.id == id)
+    
+    if(yaEsta){
+        yaEsta.cantidad = yaEsta.cantidad + 1
+        document.getElementById(`und${yaEsta.id}`).innerHTML =` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
+        actualizarCarrito()
+    }else{
+       let productoAgregar = stockProductos.find(elemento => elemento.id == id)
+        
+        productoAgregar.cantidad = 1
+        
+        carritoDeCompras.push(productoAgregar)
+        
+        actualizarCarrito()
 
+        mostrarCarrito(productoAgregar) 
+    }
+    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+}
 
+// Mostrar carrito
+function mostrarCarrito(productoAgregar) {
+    let li = document.createElement('li')
 
+    li.className = 'list-group-item';
+    li.innerHTML=`
+                    <p>${productoAgregar.nombre}</p>
+                    <p>Precio: $${productoAgregar.precio}</p>
+                    <p id="und${productoAgregar.id}">Und:${productoAgregar.cantidad}</p>
+                    <button id="eliminar${productoAgregar.id}" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+    `
+    contenedorCarrito.appendChild(li)
+
+    let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
+
+    btnEliminar.addEventListener('click',()=>{
+        if(productoAgregar.cantidad == 1){
+           btnEliminar.parentElement.remove()
+            carritoDeCompras = carritoDeCompras.filter(item=> item.id != productoAgregar.id)
+            actualizarCarrito()
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+        }else{
+            productoAgregar.cantidad = productoAgregar.cantidad - 1
+            document.getElementById(`und${productoAgregar.id}`).innerHTML =` <p id=und${productoAgregar.id}>Und:${productoAgregar.cantidad}</p>`
+            actualizarCarrito()
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+            }
+        
+
+    })
+}
+
+// Actualizar carrito
+function actualizarCarrito() {
+    //contadorCarrito.innerText = carritoDeCompras.reduce((acc,el)=> acc + el.cantidad, 0)
+    precioTotal.innerText = carritoDeCompras.reduce((acc,el)=> acc + (el.precio * el.cantidad), 0)
+}
+
+// Recuperar
+function recuperar() {
+    let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
+ 
+    if(recuperarLS){
+        recuperarLS.forEach(el=> {
+            mostrarCarrito(el)
+            carritoDeCompras.push(el)
+            actualizarCarrito()
+        })
+    }
+}
+
+recuperar()

@@ -57,10 +57,8 @@ header.innerHTML = `<div class="color-top">
             </a>
         </li>
         <li>
-            <a href="carrito.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito">
-                <i class="fas fa-shopping-bag"></i>
-                <span id="circle" class=""></span>
-            </a>
+            <i class="fas fa-shopping-bag"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito"></i>
+            <span id="circleMob" class=""></span>
         </li>
         <!-- <li class="add-prod">
             <a href="/product/add">
@@ -110,10 +108,10 @@ header.innerHTML = `<div class="color-top">
                 </a>
             </li>
             <li>
-                <a href="carrito.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span id="circle" class=""></span>
-                </a>
+                <button data-bs-toggle="modal" data-bs-target="#modalCarrito">
+                    <i id="bolsaCompra" class="fas fa-shopping-bag" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito"></i>
+                    <span id="circle" class="">0</span>
+                </button>
             </li>
         </ul> 
     </nav>
@@ -123,17 +121,3 @@ header.innerHTML = `<div class="color-top">
 
 
 
-let boton = localStorage.getItem('boton')
-let notificacion = document.getElementById('circle');
-let numero = 0;
-
-// Notificacion en la bolsa del header
-boton.addEventListener('click', addNotificacion)
-
-function addNotificacion() {
-    notificacion.classList.add('notificacion');
-    numero += 1
-    if (numero >= 1) {
-        notificacion.innerText = numero
-    }
-}
