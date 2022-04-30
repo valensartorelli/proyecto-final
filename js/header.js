@@ -1,10 +1,12 @@
 const header = document.getElementById('header')
 
+
+
 header.innerHTML = `<div class="color-top">
 <div class="container d-flex">
     <div class="copy-header">
         <marquee scrolldelay=200>
-            6 cuotas sin interes - Envios gratis a partir de $5000
+            6 cuotas sin interés - Envíos gratis a partir de $5000
         </marquee>
     </div>
     <nav>
@@ -108,16 +110,20 @@ header.innerHTML = `<div class="color-top">
                 </a>
             </li>
             <li>
-                <button data-bs-toggle="modal" data-bs-target="#modalCarrito">
+                <button class="bolsa" data-bs-toggle="modal" data-bs-target="#modalCarrito">
                     <i id="bolsaCompra" class="fas fa-shopping-bag" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito"></i>
                     <span id="circle" class="">0</span>
                 </button>
+            </li>
+            <li id="clima">
+
             </li>
         </ul> 
     </nav>
 </div>
 </div>`
 
-
-
+let temperatura = 12;
+let clima = document.getElementById('clima')
+temperatura > 25 ? clima.innerHTML += `<i class="fas fa-temperature-high"></i> ` + temperatura + '&deg;' : clima.innerHTML += `<i class="fas fa-temperature-low"></i>` + temperatura + '&deg;'
 

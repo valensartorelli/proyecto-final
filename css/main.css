@@ -1053,7 +1053,8 @@ transition: all 0.3s ease;
     font-weight: 700;
 }
 
-.boton-eliminar{
+.boton-eliminar,
+.bolsa{
     border: 0;
     background: transparent;
 }

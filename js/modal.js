@@ -1,4 +1,6 @@
 let modal = document.getElementById('modal');
+let divisa = '';
+
 
 function mostrarModal() {
     modal.innerHTML += `
@@ -13,9 +15,10 @@ function mostrarModal() {
                         <ul class="list-group list-group-flush" id="carrito-contenedor">
                         </ul>
                     </div>
-                    <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+                    <p class="precioProducto">Precio total: ${divisa}<span id="precioTotal">0</span></p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success">Comprar</button>
                     </div>
                 </div>
             </div>

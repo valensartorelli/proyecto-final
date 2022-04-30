@@ -2,13 +2,14 @@
 let carritoDeCompras = []
 
 const detalleProducto = document.getElementById('detalleProducto');
-const descAmpliada = document.getElementById('descAmpliada');
+const descripcionAmpliada = document.getElementById('descAmpliada');
 const breadCrumb = document.getElementById('rutas');
 const contenedorCarrito = document.getElementById('carrito-contenedor');
 
 let producto = localStorage.getItem('producto');
 let esteProducto = JSON.parse(producto);
-let idProducto = esteProducto.id;
+
+const {id, nombre, categoria, descripcion, descAmpliada, precio, img, destacado} = esteProducto;
 
 let boton = document.getElementById('addCart');
 let numero = 0;
@@ -19,9 +20,6 @@ const finCompra = document.getElementById('fin-compra')
 const contadorCarrito = document.getElementById('circle');
 const precioTotal = document.getElementById('precioTotal');
 
-console.log('Todos los productos: ' + stockProductos);
-console.log('ID de este producto: ' + esteProducto.id);
-
 
 // Logica de mi e-commerce
 
@@ -31,7 +29,7 @@ detalleProdu(stockProductos)
 function detalleProdu(){
     breadCrumb.innerHTML = ""
     detalleProducto.innerHTML= ""
-    descAmpliada.innerHTML = ""
+    descripcionAmpliada.innerHTML = ""
 
     // Agrego la seccion del breadcrumb
     let linkRuta = document.createElement('div')
@@ -43,7 +41,7 @@ function detalleProdu(){
             <ul>
                 <li><a href="index.html"><strong>Home</strong></a></li>
                 <li>/</li>
-                <li>${esteProducto.categoria}</li>
+                <li>${categoria}</li>
                 <li>/</li>
                 <li><a href="#">Indumentaria</a></li>   
             </ul>
@@ -56,13 +54,13 @@ function detalleProdu(){
     div.classList.add('producto')
 
     div.innerHTML += `
-        <div class="pd_tit-categoria">Indumentaria para ${esteProducto.categoria}</div>
+        <div class="pd_tit-categoria">Indumentaria para ${categoria}</div>
         <div class="pd_producto-img">
-            <div class="pd_prod-left"><img src="${esteProducto.img}" alt="${esteProducto.nombre}"></div>
+            <div class="pd_prod-left"><img src="${img}" alt="${nombre}"></div>
             <div class="pd_prod-rigt">
-                <h1>${esteProducto.nombre}</h1>
-                <p>${esteProducto.descripcion}</p>
-                <p class="pd_prod-precio">$${esteProducto.precio}</p>
+                <h1>${nombre}</h1>
+                <p>${descripcion}</p>
+                <p class="pd_prod-precio">$${precio}</p>
                 <label for="color" class="pd_label">Elegir Color</label>
                 <select name="color" id="color" placeholder="Seleccione un Color">
                     <option value="Negro">Negro</option>
@@ -110,17 +108,16 @@ function detalleProdu(){
     
     otroDiv.innerHTML += `
         <h2>Detalle del Producto</h2>
-        <p>${esteProducto.descAmpliada}</p>
+        <p>${descripcionAmpliada}</p>
     `
-    descAmpliada.appendChild(otroDiv)
+    descripcionAmpliada.appendChild(otroDiv)
 
     //
     let btnAgregar = document.getElementById('addCart')
 
     btnAgregar.addEventListener('click',()=>{
-        console.log('hola gila');
-        console.log(esteProducto.id);
-        agregarAlCarrito(esteProducto.id)
+        console.log(id);
+        agregarAlCarrito(id)
     })
 
 }

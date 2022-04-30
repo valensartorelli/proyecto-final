@@ -15,9 +15,7 @@ function mostrarProductos(array) {
     array.forEach(element => {
 
         let div = document.createElement('div');
-        div.classList.add('col-md-3')
-        div.classList.add('col-sm-6')
-        div.classList.add('col-xs-12')
+        div.classList.add('col-md-3', 'col-sm-6', 'col-xs-12')
         div.setAttribute('id', `prod${element.id}`)
 
         div.innerHTML += `
