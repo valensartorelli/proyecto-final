@@ -1,7 +1,5 @@
 const header = document.getElementById('header')
 
-
-
 header.innerHTML = `<div class="color-top">
 <div class="container d-flex">
     <div class="copy-header">
@@ -112,7 +110,7 @@ header.innerHTML = `<div class="color-top">
             <li>
                 <button class="bolsa" data-bs-toggle="modal" data-bs-target="#modalCarrito">
                     <i id="bolsaCompra" class="fas fa-shopping-bag" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito"></i>
-                    <span id="circle" class="">0</span>
+                    <span id="circle" class="notificacion">0</span>
                 </button>
             </li>
             <li id="clima">
@@ -123,7 +121,64 @@ header.innerHTML = `<div class="color-top">
 </div>
 </div>`
 
+let carritoDeCompras = []
+
 let temperatura = 12;
 let clima = document.getElementById('clima')
 temperatura > 25 ? clima.innerHTML += `<i class="fas fa-temperature-high"></i> ` + temperatura + '&deg;' : clima.innerHTML += `<i class="fas fa-temperature-low"></i>` + temperatura + '&deg;'
 
+const contenedorCarrito = document.getElementById('carrito-contenedor');
+const contadorCarrito = document.getElementById('circle');
+
+
+// Mostrar carrito
+function mostrarCarrito(productoAgregar) {
+    let li = document.createElement('li')
+
+    li.className = 'list-group-item';
+    li.innerHTML=`
+                    <p>${productoAgregar.nombre}</p>
+                    <p>Precio: $${productoAgregar.precio}</p>
+                    <p id="und${productoAgregar.id}">Und:${productoAgregar.cantidad}</p>
+                    <button id="eliminar${productoAgregar.id}" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+    `
+    contenedorCarrito.appendChild(li)
+
+    let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
+
+    btnEliminar.addEventListener('click',()=>{
+        if(productoAgregar.cantidad == 1){
+           btnEliminar.parentElement.remove()
+            carritoDeCompras = carritoDeCompras.filter(item=> item.id != productoAgregar.id)
+            actualizarCarrito()
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+        }else{
+            productoAgregar.cantidad = productoAgregar.cantidad - 1
+            document.getElementById(`und${productoAgregar.id}`).innerHTML =` <p id=und${productoAgregar.id}>Und:${productoAgregar.cantidad}</p>`
+            actualizarCarrito()
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+            }
+        
+
+    })
+}
+
+// Actualizar carrito
+function actualizarCarrito() {
+    contadorCarrito.innerText = carritoDeCompras.reduce((acc,el)=> acc + el.cantidad, 0)
+    precioTotal.innerText = carritoDeCompras.reduce((acc,el)=> acc + (el.precio * el.cantidad), 0)
+}
+
+function recuperar() {
+    let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
+ 
+    if(recuperarLS){
+        recuperarLS.forEach(el=> {
+            mostrarCarrito(el)
+            carritoDeCompras.push(el)
+            actualizarCarrito()
+        })
+    }
+}
+
+recuperar()

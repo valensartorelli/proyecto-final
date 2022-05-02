@@ -1,10 +1,8 @@
 // Declaraciones
-let carritoDeCompras = []
-
 const detalleProducto = document.getElementById('detalleProducto');
 const descripcionAmpliada = document.getElementById('descAmpliada');
 const breadCrumb = document.getElementById('rutas');
-const contenedorCarrito = document.getElementById('carrito-contenedor');
+
 
 let producto = localStorage.getItem('producto');
 let esteProducto = JSON.parse(producto);
@@ -17,7 +15,6 @@ let numero = 0;
 const botonTerminar = document.getElementById('terminar')
 const finCompra = document.getElementById('fin-compra')
 
-const contadorCarrito = document.getElementById('circle');
 const precioTotal = document.getElementById('precioTotal');
 
 
@@ -144,56 +141,3 @@ function agregarAlCarrito(id) {
     }
     localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
 }
-
-// Mostrar carrito
-function mostrarCarrito(productoAgregar) {
-    let li = document.createElement('li')
-
-    li.className = 'list-group-item';
-    li.innerHTML=`
-                    <p>${productoAgregar.nombre}</p>
-                    <p>Precio: $${productoAgregar.precio}</p>
-                    <p id="und${productoAgregar.id}">Und:${productoAgregar.cantidad}</p>
-                    <button id="eliminar${productoAgregar.id}" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
-    `
-    contenedorCarrito.appendChild(li)
-
-    let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
-
-    btnEliminar.addEventListener('click',()=>{
-        if(productoAgregar.cantidad == 1){
-           btnEliminar.parentElement.remove()
-            carritoDeCompras = carritoDeCompras.filter(item=> item.id != productoAgregar.id)
-            actualizarCarrito()
-            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
-        }else{
-            productoAgregar.cantidad = productoAgregar.cantidad - 1
-            document.getElementById(`und${productoAgregar.id}`).innerHTML =` <p id=und${productoAgregar.id}>Und:${productoAgregar.cantidad}</p>`
-            actualizarCarrito()
-            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
-            }
-        
-
-    })
-}
-
-// Actualizar carrito
-function actualizarCarrito() {
-    //contadorCarrito.innerText = carritoDeCompras.reduce((acc,el)=> acc + el.cantidad, 0)
-    precioTotal.innerText = carritoDeCompras.reduce((acc,el)=> acc + (el.precio * el.cantidad), 0)
-}
-
-// Recuperar
-function recuperar() {
-    let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
- 
-    if(recuperarLS){
-        recuperarLS.forEach(el=> {
-            mostrarCarrito(el)
-            carritoDeCompras.push(el)
-            actualizarCarrito()
-        })
-    }
-}
-
-recuperar()
