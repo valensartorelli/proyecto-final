@@ -1,5 +1,5 @@
 let modal = document.getElementById('modal');
-let divisa = '';
+let divisa = '$';
 
 
 function mostrarModal() {

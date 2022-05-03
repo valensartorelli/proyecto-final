@@ -133,33 +133,65 @@ const contadorCarrito = document.getElementById('circle');
 
 // Mostrar carrito
 function mostrarCarrito(productoAgregar) {
-    let li = document.createElement('li')
+    if (carritoDeCompras.length == 0){
+        let li = document.createElement('li')
 
-    li.className = 'list-group-item';
-    li.innerHTML=`
-                    <p>${productoAgregar.nombre}</p>
-                    <p>Precio: $${productoAgregar.precio}</p>
-                    <p id="und${productoAgregar.id}">Und:${productoAgregar.cantidad}</p>
-                    <button id="eliminar${productoAgregar.id}" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
-    `
-    contenedorCarrito.appendChild(li)
+        li.className = 'list-group-item';
+        li.innerHTML=`
+            <p>El carrito esta vacio</p>
+        `
+        contenedorCarrito.appendChild(li)
+    } else {
+        let li = document.createElement('li')
+
+        li.className = 'list-group-item';
+        li.innerHTML=`
+                        <p>${productoAgregar.nombre}</p>
+                        <p>Precio: $${productoAgregar.precio}</p>
+                        <p id="und${productoAgregar.id}">Und:${productoAgregar.cantidad}</p>
+                        <button id="eliminar${productoAgregar.id}" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+        `   
+        contenedorCarrito.appendChild(li)
+    }
+    
 
     let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
 
     btnEliminar.addEventListener('click',()=>{
         if(productoAgregar.cantidad == 1){
-           btnEliminar.parentElement.remove()
-            carritoDeCompras = carritoDeCompras.filter(item=> item.id != productoAgregar.id)
-            actualizarCarrito()
-            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
-        }else{
-            productoAgregar.cantidad = productoAgregar.cantidad - 1
-            document.getElementById(`und${productoAgregar.id}`).innerHTML =` <p id=und${productoAgregar.id}>Und:${productoAgregar.cantidad}</p>`
-            actualizarCarrito()
-            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
-            }
-        
-
+            Swal.fire({
+                title: 'Atencion',
+                text: 'Estas seguro que quieres eliminar este producto?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    btnEliminar.parentElement.remove()
+                    carritoDeCompras = carritoDeCompras.filter(item=> item.id != productoAgregar.id)
+                    actualizarCarrito()
+                    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+                }
+            });
+        } else{
+            Swal.fire({
+                title: 'Atencion',
+                text: 'Estas seguro que quieres eliminar este producto?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    productoAgregar.cantidad = productoAgregar.cantidad - 1
+                    document.getElementById(`und${productoAgregar.id}`).innerHTML =` <p id=und${productoAgregar.id}>Und:${productoAgregar.cantidad}</p>`
+                    actualizarCarrito()
+                    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+                }
+            });
+            
+        }
     })
 }
 
@@ -182,3 +214,5 @@ function recuperar() {
 }
 
 recuperar()
+
+
