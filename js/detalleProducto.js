@@ -18,12 +18,9 @@ const finCompra = document.getElementById('fin-compra')
 const precioTotal = document.getElementById('precioTotal');
 
 
-// Logica de mi e-commerce
-
-// Mostrar los productos
-detalleProdu(stockProductos)
-
-function detalleProdu(){
+fetch('js/stock.json')
+.then((response) => response.json())
+.then((data) => {
     breadCrumb.innerHTML = ""
     detalleProducto.innerHTML= ""
     descripcionAmpliada.innerHTML = ""
@@ -38,7 +35,7 @@ function detalleProdu(){
             <ul>
                 <li><a href="index.html"><strong>Home</strong></a></li>
                 <li>/</li>
-                <li>${categoria}</li>
+                <li>${esteProducto.categoria}</li>
                 <li>/</li>
                 <li><a href="#">Indumentaria</a></li>   
             </ul>
@@ -51,13 +48,13 @@ function detalleProdu(){
     div.classList.add('producto')
 
     div.innerHTML += `
-        <div class="pd_tit-categoria">Indumentaria para ${categoria}</div>
+        <div class="pd_tit-categoria">Indumentaria para ${esteProducto.categoria}</div>
         <div class="pd_producto-img">
-            <div class="pd_prod-left"><img src="${img}" alt="${nombre}"></div>
+            <div class="pd_prod-left"><img src="${esteProducto.img}" alt="${esteProducto.nombre}"></div>
             <div class="pd_prod-rigt">
-                <h1>${nombre}</h1>
-                <p>${descripcion}</p>
-                <p class="pd_prod-precio">$${precio}</p>
+                <h1>${esteProducto.nombre}</h1>
+                <p>${esteProducto.descripcion}</p>
+                <p class="pd_prod-precio">$${esteProducto.precio}</p>
                 <label for="color" class="pd_label">Elegir Color</label>
                 <select name="color" id="color" placeholder="Seleccione un Color">
                     <option value="Negro">Negro</option>
@@ -105,7 +102,7 @@ function detalleProdu(){
     
     otroDiv.innerHTML += `
         <h2>Detalle del Producto</h2>
-        <p>${descripcionAmpliada}</p>
+        <p>${esteProducto.descAmpliada}</p>
     `
     descripcionAmpliada.appendChild(otroDiv)
 
@@ -117,27 +114,131 @@ function detalleProdu(){
         agregarAlCarrito(id)
     })
 
-}
-
-
-// Agregar al carrito
-function agregarAlCarrito(id) {
-    let yaEsta = carritoDeCompras.find(item=> item.id == id)
-    
-    if(yaEsta){
-        yaEsta.cantidad = yaEsta.cantidad + 1
-        document.getElementById(`und${yaEsta.id}`).innerHTML =` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
-        actualizarCarrito()
-    }else{
-       let productoAgregar = stockProductos.find(elemento => elemento.id == id)
+    //Agregar al carrito
+    function agregarAlCarrito(id) {
+        let yaEsta = carritoDeCompras.find(item=> item.id == id)
         
-        productoAgregar.cantidad = 1
-        
-        carritoDeCompras.push(productoAgregar)
-        
-        actualizarCarrito()
+        if(yaEsta){
+            yaEsta.cantidad = yaEsta.cantidad + 1
+            document.getElementById(`und${yaEsta.id}`).innerHTML =` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
+            actualizarCarrito()
+        }else{
+        let productoAgregar = data.find(elemento => elemento.id == id)
+            
+            productoAgregar.cantidad = 1
+            
+            carritoDeCompras.push(productoAgregar)
+            
+            actualizarCarrito()
 
-        mostrarCarrito(productoAgregar) 
+            mostrarCarrito(productoAgregar) 
+        }
+        localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
     }
-    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
-}
+
+
+    
+})
+
+// Logica de mi e-commerce
+
+// Mostrar los productos
+// detalleProdu(stockProductos)
+
+// function detalleProdu(){
+//     breadCrumb.innerHTML = ""
+//     detalleProducto.innerHTML= ""
+//     descripcionAmpliada.innerHTML = ""
+
+//     // Agrego la seccion del breadcrumb
+//     let linkRuta = document.createElement('div')
+//     linkRuta.classList.add('container')
+//     linkRuta.classList.add('link-ruta')
+
+//     linkRuta.innerHTML += `
+//         <nav>
+//             <ul>
+//                 <li><a href="index.html"><strong>Home</strong></a></li>
+//                 <li>/</li>
+//                 <li>${categoria}</li>
+//                 <li>/</li>
+//                 <li><a href="#">Indumentaria</a></li>   
+//             </ul>
+//         </nav>
+//     `
+//     breadCrumb.appendChild(linkRuta);
+
+//     // Agrego la seccion Descripcion de producto
+//     let div = document.createElement('div')
+//     div.classList.add('producto')
+
+//     div.innerHTML += `
+//         <div class="pd_tit-categoria">Indumentaria para ${categoria}</div>
+//         <div class="pd_producto-img">
+//             <div class="pd_prod-left"><img src="${img}" alt="${nombre}"></div>
+//             <div class="pd_prod-rigt">
+//                 <h1>${nombre}</h1>
+//                 <p>${descripcion}</p>
+//                 <p class="pd_prod-precio">$${precio}</p>
+//                 <label for="color" class="pd_label">Elegir Color</label>
+//                 <select name="color" id="color" placeholder="Seleccione un Color">
+//                     <option value="Negro">Negro</option>
+//                     <option value="Blanco">Blanco</option>
+//                     <option value="Rojo">Rojo</option>
+//                     <option value="Azul">Azul</option>
+//                 </select>
+//                 <br><br><br>
+//                 <label for="talles" class="pd_label">Elegir Talle</label>
+//                 <div class="radio-talles">
+//                     <input type="radio" name="talle" id="S">
+//                     <label for="S" class="label-talle">S</label>
+//                     <input type="radio" name="talle" id="M">
+//                     <label for="M" class="label-talle">M</label>
+//                     <input type="radio" name="talle" id="L">
+//                     <label for="L" class="label-talle">L</label>
+//                     <input type="radio" name="talle" id="XL">
+//                     <label for="XL" class="label-talle">XL</label>
+//                 </div>
+//                 <div class="guias">
+//                     <div class="guia-left">
+//                         <a href="#">
+//                             <i class="pe-7s-bookmarks"></i> 
+//                             Guía de talles
+//                         </a>
+//                     </div>
+//                     <div class="guia-right">
+//                         <a href="#">
+//                             <i class="pe-7s-box1"></i> 
+//                             Envíos y cambios
+//                         </a>
+//                     </div>
+//                 </div>
+//                 <button type="button" id="addCart" class="pd_gl-cta pd_gl-cta--primary pd_gl-cta__content" >
+//                     Agregar al Carrito
+//                 </button>
+//             </div>
+//         </div>
+//     `
+//     detalleProducto.appendChild(div)
+
+//     // Agrego la seccion Descripcion ampliada
+//     let otroDiv = document.createElement('div')
+//     otroDiv.classList.add('desc-ampliada')
+    
+//     otroDiv.innerHTML += `
+//         <h2>Detalle del Producto</h2>
+//         <p>${descripcionAmpliada}</p>
+//     `
+//     descripcionAmpliada.appendChild(otroDiv)
+
+//     //
+//     let btnAgregar = document.getElementById('addCart')
+
+//     btnAgregar.addEventListener('click',()=>{
+//         console.log(id);
+//         agregarAlCarrito(id)
+//     })
+
+// }
+
+
