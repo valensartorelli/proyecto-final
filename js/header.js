@@ -203,16 +203,15 @@ function actualizarCarrito() {
 
 function recuperar() {
     let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
- 
+    console.log(recuperarLS);
     if(recuperarLS){
         recuperarLS.forEach(el=> {
-            mostrarCarrito(el)
+        
             carritoDeCompras.push(el)
+            mostrarCarrito(el)
             actualizarCarrito()
         })
     }
 }
-
-recuperar()
 
 

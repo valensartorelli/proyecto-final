@@ -1,14 +1,24 @@
 // Declaraciones
 let carrito = [];
-
+let stockProductos =[]
 let carouselItem = document.getElementById('carruDes')
 let carouselItem2 = document.getElementById('carruDes2')
-
+fetch('js/stock.json')
+.then((response) => response.json())
+.then((data) => {
+    data.forEach(el=>{
+        stockProductos.push(el)
+    })
+   let arrayN =  data.filter(x=> x.destacado == true)
+   mostrarProductosDestacados(arrayN.splice(0,4))
+   destacados(arrayN)
+   recuperar()
+});
 
 // Mostrar los productos destacados
 // mostrarProductosDestacados(stockProductos.filter(x=> x.destacado == true))
-let arrayN = stockProductos.filter(x=> x.destacado == true)
-mostrarProductosDestacados(arrayN.splice(0,4))
+// let arrayN = stockProductos.filter(x=> x.destacado == true)
+// mostrarProductosDestacados(arrayN.splice(0,4))
 
 function mostrarProductosDestacados(arrayProductosDestacados) {
      
@@ -40,7 +50,7 @@ function mostrarProductosDestacados(arrayProductosDestacados) {
     });
 }
 
-destacados(arrayN)
+// destacados(arrayN)
 
 function destacados(arrayN) {
     //console.log(arrayN);
