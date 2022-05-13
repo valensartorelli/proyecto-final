@@ -11,7 +11,7 @@ header.innerHTML = `<div class="color-top">
         <ul>
             <li><a href="#">Ayuda </a></li>
             <li>|</li>
-            <li><a href="users/login"> Iniciar Sesión </a></li>
+            <li><a href="login.html"> Iniciar Sesión </a></li>
         </ul>
     </nav>
 </div>
@@ -52,7 +52,7 @@ header.innerHTML = `<div class="color-top">
 <nav class="main-navbar">
     <ul>
         <li>
-            <a href="/users/add" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
+            <a href="register.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
                 <i class="fas fa-user"></i>
             </a>
         </li>
@@ -103,7 +103,7 @@ header.innerHTML = `<div class="color-top">
         
         <ul>
             <li>
-                <a href="/users/add" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
+                <a href="register.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrate">
                     <i class="fas fa-user"></i>
                 </a>
             </li>
@@ -123,12 +123,13 @@ header.innerHTML = `<div class="color-top">
 
 let carritoDeCompras = []
 
-let temperatura = 12;
+let temperatura = 19;
 let clima = document.getElementById('clima')
 temperatura > 25 ? clima.innerHTML += `<i class="fas fa-temperature-high"></i> ` + temperatura + '&deg;' : clima.innerHTML += `<i class="fas fa-temperature-low"></i>` + temperatura + '&deg;'
 
 const contenedorCarrito = document.getElementById('carrito-contenedor');
 const contadorCarrito = document.getElementById('circle');
+
 
 
 // Mostrar carrito
@@ -141,6 +142,7 @@ function mostrarCarrito(productoAgregar) {
             <p>El carrito esta vacio</p>
         `
         contenedorCarrito.appendChild(li)
+        
     } else {
         let li = document.createElement('li')
 
@@ -152,6 +154,7 @@ function mostrarCarrito(productoAgregar) {
                         <button id="eliminar${productoAgregar.id}" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
         `   
         contenedorCarrito.appendChild(li)
+        
     }
     
 
@@ -203,7 +206,7 @@ function actualizarCarrito() {
 
 function recuperar() {
     let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
-    console.log(recuperarLS);
+    
     if(recuperarLS){
         recuperarLS.forEach(el=> {
         
@@ -213,5 +216,3 @@ function recuperar() {
         })
     }
 }
-
-

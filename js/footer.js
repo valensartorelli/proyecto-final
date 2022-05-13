@@ -31,22 +31,22 @@ footer.innerHTML = `<section>
     <nav class="main-navbar-social">
         <ul>
             <li class="ico-network">
-                <a href="https://www.instagram.com/">
+                <a href="https://www.instagram.com/" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a>
             </li>
             <li class="ico-network">
-                <a href="https://www.facebook.com/">
+                <a href="https://www.facebook.com/" target="_blank">
                     <i class="fab fa-facebook-square"></i>
                 </a>
             </li>
             <li class="ico-network">
-                <a href="https://www.youtube.com/">
+                <a href="https://www.youtube.com/" target="_blank">
                     <i class="fab fa-youtube"></i>
                 </a>
             </li>
             <li class="ico-network">
-                <a href="https://www.twitter.com/">
+                <a href="https://www.twitter.com/" target="_blank">
                     <i class="fab fa-twitter"></i>
                 </a>
             </li>

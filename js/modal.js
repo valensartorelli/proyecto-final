@@ -18,7 +18,9 @@ function mostrarModal() {
                     <p class="precioProducto">Precio total: ${divisa}<span id="precioTotal">0</span></p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success">Comprar</button>
+                        <button type="button" onclick="location.href='carrito.html'" class="btn btn-success">  
+                            Comprar
+                        </button>
                     </div>
                 </div>
             </div>
@@ -27,4 +29,3 @@ function mostrarModal() {
 }
 
 mostrarModal();
-

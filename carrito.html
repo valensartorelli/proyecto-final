@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Tienda de ropa con carrito - Proyecto para Coderhouse">
+        <meta name="author" content="Valentina Sartorelli">
+        <title>We Byte</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">    
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+        <link rel="stylesheet" href="css/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+    
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        
+        <!-- Custom styles for this template -->
+        <link href="css/carousel.css" rel="stylesheet">
+    
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+
+    <body id="body">
+        <header id="header"></header>
+        
+        <main>
+            <div class="container">
+                <br>
+                <div class="pd_tit-categoria p40">Carrito</div>
+                <p class="carrito" id="total_carrito"></p>
+                <div class="agrupar-carrito">
+                    <section class="carro">
+                        <article id="productoEnCarrito">
+                            
+                        </article>
+                        
+                        <div>
+                            <button type="button" onclick="location.href='login.html'" class="pd_gl-cta pd_gl-cta--primary right"><span class="pd_gl-cta__content">Ir a Pagar</span></button>
+                       </div>
+                    </section>
+                       
+                    <section class="resumen-ayuda">
+                        <div class="Resumen">
+                            <button type="button" onclick="location.href='login.html'" class="carro-pagar">IR A PAGAR</button>
+                            <div class="resumen-pedido">
+                                <h3>RESUMEN DEL PEDIDO</h3>
+                                <ul id="resumen_pedido_carrito">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ayuda">
+                            <h3>¿NECESITAS AYUDA?</h3>
+                            <ul class="enlaces-ayuda">
+                                <li><a href="#">¿Mi producto llegara a tiempo?</a></li>
+                                <li><a href="#">¿Con cuantas cuotas cuento?</a></li>
+                                <li><a href="#">¿Son las cuotas sin intereses?</a></li>
+                                <li><a href="#">¿Es seguro comprar en linea?</a></li>
+                            </ul>
+                        </div>
+                        <div class="Opciones">
+                            <h3>OPCIONES DE PAGO</h3>
+                            <img src="img/op1.png" alt="visa">
+                            <img src="img/op2.png" alt="mastercard">
+                            <img src="img/op3.PNG" alt="mercadopago">
+                            <img src="img/op4.PNG" alt="bitcoin">
+                        </div>
+                        <div class="pd_prod-rigt3">
+                            <h2>UNITE AL WEBYTE. <br>OBTENÉ BENEFICIOS</h2>
+                                <p class="fr-destacado"> ✓ Disfrutá inmediatamente de todos los beneficios y descuentos</p>
+                                <p class="fr-destacado"> ✓ Accedé a la venta de productos de edición limitada</p>
+                                <p class="fr-destacado"> ✓ Recibí nuestras mejores ofertas y promociones</p>
+                                <p class="fr-destacado"> ✓ Es hora de desbloquear lo mejor de WEBYTE.</p>
+                        
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <div id="pre-footer"></div>
+        </main>
+        
+        <!-- Modal -->
+        <section id="modal"></section>
+
+        <footer id="footer"></footer>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script src="js/modal.js"></script>
+        <script src="js/header.js"></script>       
+        <script src="js/carrito.js"></script>
+        <script src="js/prefooter.js"></script>
+        <script src="js/footer.js"></script>
+        
+        <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+        </script>
+    </body>
+</html>

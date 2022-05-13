@@ -16,10 +16,6 @@ fetch('js/stock.json')
 });
 
 // Mostrar los productos destacados
-// mostrarProductosDestacados(stockProductos.filter(x=> x.destacado == true))
-// let arrayN = stockProductos.filter(x=> x.destacado == true)
-// mostrarProductosDestacados(arrayN.splice(0,4))
-
 function mostrarProductosDestacados(arrayProductosDestacados) {
      
     arrayProductosDestacados.forEach(item => {
@@ -50,12 +46,9 @@ function mostrarProductosDestacados(arrayProductosDestacados) {
     });
 }
 
-// destacados(arrayN)
 
 function destacados(arrayN) {
-    //console.log(arrayN);
     arrayN.forEach(item => {
-        //console.log(item);
         let otroDiv = document.createElement('div');
         otroDiv.classList.add('novedad')
         otroDiv.setAttribute('id', `prod${item.id}`)
@@ -80,5 +73,4 @@ function destacados(arrayN) {
             localStorage.setItem('producto', JSON.stringify(prod))
         })
     });
-}
-                                   
+}                      
