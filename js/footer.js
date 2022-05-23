@@ -14,17 +14,13 @@ footer.innerHTML = `<section>
     </div>
     <nav class="main-navbar-bottom">
         <ul>
-            <li><a href="listado-h.html">Hombre </a></li>
+            <li><a href="nosotros.html">Sobre Nosotros</a></li>
             <li>|</li>
-            <li><a href="listado-m.html">Mujer </a></li>
+            <li><a href="como-comprar.html">¿Cómo Comprar?</a></li>
             <li>|</li>
-            <li><a href="listado-n.html">Niños </a></li>
+            <li><a href="listado.html">Productos</a></li>
             <li>|</li>
-            <li><a href="listado.html">Todos </a></li>
-            <li>|</li>
-            <li><a href="#">Como comprar </a></li>
-            <li>|</li>
-            <li><a href="#">Contactenos </a></li>
+            <li><a href="mailto:hola@webyte.com">Contactenos </a></li>
             <li>|</li>
         </ul>
     </nav>

@@ -34,10 +34,9 @@ header.innerHTML = `<div class="color-top">
     
         <ul id="menu">
             <a href="index.html"><li><img src="img/logo-weByte.png" alt="" style="width: 55px; text-align: left;"></li></a>
-            <a href="listado-h.html"><li>Hombres</li></a>
-            <a href="listado-m.html"><li>Mujeres</li></a>
-            <a href="listado-n.html"><li>Niños</li></a>
-            <a href="listado.html"><li>Ver todo</li></a>
+            <a href="nosotros.html"><li>Sobre Nosotros</li></a>
+            <a href="como-comprar.html"><li>¿Cómo Comprar?</li></a>
+            <a href="listado.html"><li>Productos</li></a>
         </ul>
     </div>
 </nav>
@@ -89,13 +88,11 @@ header.innerHTML = `<div class="color-top">
     </div>
     <nav class="main-navbar-left">
         <ul>
-            <li><a href="listado-h.html">Hombres</a></li>
+            <li><a href="nosotros.html">Sobre Nosotros</a></li>
             <li>|</li>
-            <li><a href="listado-m.html">Mujeres</a></li>
+            <li><a href="como-comprar.html">¿Cómo Comprar?</a></li>
             <li>|</li>
-            <li><a href="listado-n.html">Niños</a></li>
-            <li>|</li>
-            <li><a href="listado.html">Ver todo</a></li>
+            <li><a href="listado.html">Productos</a></li>
             <li>|</li>
         </ul>
     </nav>

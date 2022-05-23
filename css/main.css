@@ -776,7 +776,7 @@ section.accesos{
 	margin-bottom: 45px;
 	
 }
-section.accesos a{
+section.accesos img{
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
@@ -785,7 +785,7 @@ section.accesos a{
 	display: block;
 	margin-bottom: 20px
 }
-section.accesos a:hover{
+section.accesos img:hover{
 	box-shadow: 0px 0px 10px rgb(100, 100, 100);
 }
 section .img-destacada{
@@ -1321,6 +1321,12 @@ ul.enlaces-ayuda{
         padding: 0;
         margin: 35px 0;
     }
+}
+.txt-mod{
+    margin: 30px 0 90px;
+}
+.ir-a-pagar{
+    min-width: 55%;
 }
 
 

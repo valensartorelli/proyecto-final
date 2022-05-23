@@ -39,3 +39,4 @@ carritoDeCompras.forEach( item => {
 
     resumenPedido.appendChild(li)
 })
+
